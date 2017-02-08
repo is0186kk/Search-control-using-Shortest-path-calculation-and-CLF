@@ -59,12 +59,6 @@ public:
   STAK(double s_x_, double s_y_, double s_r_) : sx(s_x_), sy(s_y_), sr(s_r_){}
 };
 
-class WALL{
-public:
-	double wx, wy;
-	WALL(double w_x_, double w_y_) : wx(w_x_), wy(w_y_){}
-};
-
 class GRAPH{
 public:
 	vector<NODE> node;
@@ -78,7 +72,7 @@ void GRAPH::print(void){
 	ofstream outputfile(F);
 
 	for(int i=0; i < node.size(); i++){
-		outputfile<< node[i].x<<", "<< node[i].y<<endl;
+		outputfile << node[i].x <<", " << node[i].y <<endl;
 	}
 	outputfile.close();
 }
@@ -98,6 +92,7 @@ void GRAPH::print(void){
 // 	}
 // }
 
+//障害物座標データ
 class OBSTACLES{
 private:
 	typedef struct{
@@ -111,7 +106,7 @@ public:
 	//特定のグリッドにある点を全て列挙する
 	void print_obstacle(int y, int x){
 		for(int i = 0; i < data[y][x].size(); i++){
-			cout << "obstacle: "<< data[y][x][i].x << " "<<data[y][x][i].y<< endl;
+			cout << "obstacle: " << data[y][x][i].x << " " <<data[y][x][i].y << endl;
 		}
 	}
 
@@ -325,20 +320,20 @@ void graph(GRAPH *g, OBSTACLES obstacle, vector<double> &dist){
 			}
 			i++;
 			cout << i << endl;
-			outputfile_z<< z<< " ";
+			outputfile_z << z << " ";
 		}
-		outputfile_z<< endl;
+		outputfile_z << endl;
 	}
 	outputfile_z.close();
 
 	ofstream outputfile_x(F3d_x);
 	for(x = xmin; x <= xmax; x += meshwidth_x){
-		outputfile_x<< x<< " ";
+		outputfile_x << x << " ";
 	}
 	outputfile_x.close();
 	ofstream outputfile_y(F3d_y);
 	for(y = ymin; y <= ymax; y += meshwidth_y){
-		outputfile_y<< y<< " ";
+		outputfile_y << y << " ";
 	}
 	outputfile_y.close();
 }
@@ -400,9 +395,9 @@ void discretization(GRAPH *g, OBSTACLES obstacle){
 	for(int s = 0; s < g->stak.size(); s++){
 		check_wall(g, obstacle, g->stak[s].sx, g->stak[s].sy, g->stak[s].sr, 1);
 	}
-	cout << g->node.size()<<endl;
+	cout << g->node.size() << endl;
 	erase_wall(g, obstacle);
-	cout << g->node.size()<<endl;
+	cout << g->node.size() << endl;
 }
 
 //edge生成--------------------------------------------------------------------

@@ -152,7 +152,7 @@ int check_same(MAP *map, double x, double y, double r){
 	for(int i = 0; i < map->dest.size(); i++){
 		if(map->dest[i].dx == x && map->dest[i].dy == y){
 			if(map->dest[i].dr > r){
-				map->dest[i].dr = r;
+				 map->dest[i].dr = r;
 				return 0;
 			}
 			else return 1;
